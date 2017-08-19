@@ -1,6 +1,7 @@
 const express = require('express');
 
 const app = express();
+const adminRoute = require('./controller/adminRoute');
 
 const server = require('http').Server(app);
 const io = require('socket.io')(server);
@@ -9,9 +10,11 @@ app.set('view engine', 'ejs');
 app.set('views', './views');
 app.use(express.static('public'));
 
+app.use('/admin', adminRoute);
+
 app.get('/', (req, res) => res.render('home'));
 
-app.get('/admin', (req, res) => res.render('admin', { arrAds }));
+// app.get('/admin', (req, res) => res.render('admin', { arrAds }));
 
 server.listen(3000, () => console.log('Server started!'));
 
