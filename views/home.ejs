@@ -4,8 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="jquery.js"></script>
+    <script src="socket.io/socket.io.js"></script>
 </head>
 <body>
+        <a href="http://facebook.com" id="a-ad">
+                <img src="1.png" alt="" width="200" id="img-ad">
+        </a>
         <div class="fck_detail width_common block_ads_connect">
                 <p class="Normal">
 Thanh tra Chính phủ vừa ra kết luận về các dự án đầu tư, quản lý theo hình thức hợp đồng xây dựng - chuyển giao (BT), hợp đồng xây dựng - kinh doanh - chuyển giao (BOT) thuộc lĩnh vực giao thông, môi trường tại Bộ Giao thông Vận tải. Có bảy dự án được chỉ ra sai phạm, như: nhà đầu tư phê duyệt sai tăng về đơn giá định mức, chế độ tiền lương, phụ cấp hoặc các yếu tố phát sinh không đúng thực tế với số tiền 316 tỷ đồng.</p><table align="center" border="0" cellpadding="3" cellspacing="0" class="tplCaption" style="width: 100%;"><tbody><tr><td>
@@ -50,5 +55,16 @@ Ngoài ra, việc lập, phê duyệt tổng mức đầu tư, trong đó có kh
             "Bộ Giao thông sẽ thực hiện nghiêm túc theo kết luận của Thanh tra Chính phủ, các tồn tại sẽ được giải quyết, sai phạm của cá nhân, tổ chức đến đâu sẽ xử lý đến đó", ông Đông nói.&nbsp;</p>
     </td>
 </tr></tbody></table>                                                </div>
+        <script>
+                const socket = io();
+
+                $('#a-ad').hide();
+
+                socket.on('SHOW_THIS_AD', ad => {
+                        $('#a-ad').attr('href', 'http://' + ad.link);
+                        $('#img-ad').attr('src', ad.image);
+                        $('#a-ad').show();
+                });
+        </script>
 </body>
 </html>

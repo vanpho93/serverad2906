@@ -30,3 +30,10 @@ const arrAds = [
     new Ad(3, 'Instagram', 'instagram.com', '3.png'),
     new Ad(4, 'Google', 'plus.google.com', '4.png')
 ];
+
+io.on('connection', socket => {
+    socket.on('ADMIN_CHANGE_ADD_BY_IMAGE', image => {
+        const ad = arrAds.find(e => e.image === image);
+        socket.broadcast.emit('SHOW_THIS_AD', ad);
+    });
+});

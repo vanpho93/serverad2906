@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="jquery.js"></script>
+    <script src="socket.io/socket.io.js"></script>
 </head>
 <body>
     <select id="sl-ad">
@@ -13,13 +14,20 @@
             <option <%= e.branch === 'Facebook' ? 'selected' : '' %> value="<%= e.image %>"><%= e.branch %></option>
         <% }); %>
     </select>
-    <button>Show ad</button>
+    <button id="btn-show">Show ad</button>
     <br><br>
     <img src="1.png" width="200" id="img-show">
     <script>
+        const socket = io();
+
         $('#sl-ad').change(() => {
             const image = $('#sl-ad').val();
             $('#img-show').attr('src', image);
+        });
+
+        $('#btn-show').click(() => {
+            const image = $('#sl-ad').val();
+            socket.emit('ADMIN_CHANGE_ADD_BY_IMAGE', image);
         });
     </script>
 </body>
