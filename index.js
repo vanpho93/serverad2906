@@ -10,7 +10,9 @@ app.set('views', './views');
 app.use(express.static('public'));
 
 app.get('/', (req, res) => res.render('home'));
-app.get('/admin', (req, res) => res.render('admin'));
+
+app.get('/admin', (req, res) => res.render('admin', { arrAds }));
+
 server.listen(3000, () => console.log('Server started!'));
 
 class Ad {

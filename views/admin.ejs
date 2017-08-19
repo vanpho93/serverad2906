@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="jquery.js"></script>
 </head>
 <body>
-    <h3>Admin</h3>
+    <select id="sl-ad">
+        <option>--Chọn quảng cáo--</option>
+        <% arrAds.forEach(e => { %>
+            <option <%= e.branch === 'Facebook' ? 'selected' : '' %> value="<%= e.image %>"><%= e.branch %></option>
+        <% }); %>
+    </select>
+    <button>Show ad</button>
+    <br><br>
+    <img src="1.png" width="200" id="img-show">
+    <script>
+        $('#sl-ad').change(() => {
+            const image = $('#sl-ad').val();
+            $('#img-show').attr('src', image);
+        });
+    </script>
 </body>
 </html>
